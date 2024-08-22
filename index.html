@@ -1,0 +1,827 @@
+<!DOCTYPE html><html><head><base href="https://www.aiinstructor.com/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ariel AI - מורה לבינה מלאכותית</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700&display=swap');
+  
+  :root {
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --card-bg: #fff;
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Heebo', sans-serif;
+    line-height: 1.8;
+    color: var(--text-color);
+    direction: rtl;
+    background-color: var(--background-color);
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+  
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: var(--card-bg);
+    padding: 4rem 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+    background-size: 20px 20px;
+    transform: rotate(30deg);
+    animation: moveBackground 60s linear infinite;
+  }
+
+  @keyframes moveBackground {
+    0% {
+      transform: rotate(30deg) translateY(0);
+    }
+    100% {
+      transform: rotate(30deg) translateY(100px);
+    }
+  }
+  
+  h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-cta {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--card-bg);
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .header-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.5s ease;
+  }
+
+  .header-cta:hover::before {
+    left: 100%;
+  }
+  
+  main {
+    padding: 5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+  }
+  
+  .model-section, .service-section, .video-section {
+    background-color: var(--card-bg);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .model-section::before, .service-section::before, .video-section::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0;
+    transition: all 0.5s ease;
+  }
+  
+  .model-section:hover, .service-section:hover, .video-section:hover {
+    transform: translateY(-10px) scale(1.03);
+  }
+
+  .model-section:hover::before, .service-section:hover::before, .video-section:hover::before {
+    opacity: 0.3;
+  }
+  
+  h2 {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+  }
+
+  .model-section:hover h2::after, .service-section:hover h2::after, .video-section:hover h2::after {
+    width: 100px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-right: 1rem;
+  }
+  
+  li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  li:hover {
+    transform: translateX(-10px);
+  }
+  
+  li::before {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+  }
+
+  li:hover::before {
+    transform: scale(1.2) rotate(10deg);
+  }
+  
+  .language-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>');
+  }
+  
+  .image-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2327ae60"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>');
+  }
+  
+  .voice-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e74c3c"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/></svg>');
+  }
+  
+  .website-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239b59b6"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>');
+  }
+  
+  .video-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23f39c12"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"/></svg>');
+  }
+  
+  .app-model::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231abc9c"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>');
+  }
+  
+  .private-lesson::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e67e22"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>');
+  }
+
+  .lecture::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2316a085"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM5 15h14v3H5z"/></svg>');
+  }
+
+  .workshop::before {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%238e44ad"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.88-11.71L10 14.17l-1.88-1.88c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7c.39-.39.39-1.02 0-1.41-.39-.39-1.03-.39-1.42 0z"/></svg>');
+  }
+  
+  .cta {
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    color: var(--card-bg);
+    padding: 1.5rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 4rem auto;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 20%, transparent 20%);
+    background-size: 10px 10px;
+    transform: rotate(45deg);
+    animation: sparkle 3s linear infinite;
+  }
+
+  @keyframes sparkle {
+    0% {
+      transform: rotate(45deg) translateY(0);
+    }
+    100% {
+      transform: rotate(45deg) translateY(100px);
+    }
+  }
+  
+  footer {
+    background-color: var(--secondary-color);
+    color: var(--card-bg);
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 10%);
+    background-size: 20px 20px;
+    transform: rotate(30deg);
+    animation: moveBackgroundFooter 40s linear infinite;
+  }
+
+  @keyframes moveBackgroundFooter {
+    0% {
+      transform: rotate(30deg) translateY(0);
+    }
+    100% {
+      transform: rotate(30deg) translateY(-100px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 3rem;
+    }
+    
+    .tagline {
+      font-size: 1.2rem;
+    }
+
+    main {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Scroll animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Particle effect */
+  #particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+  }
+
+  /* Video section styles */
+  .video-section {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .video-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .video-wrapper {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .video-wrapper iframe {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .video-wrapper iframe:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  .modal-content {
+    background-color: var(--card-bg);
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .modal-video {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    position: relative;
+  }
+
+  .modal-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div id="particles-js"></div>
+    <div class="container">
+      <h1>Ariel AI - המפתח להצלחה בעידן הדיגיטלי</h1>
+      <p class="tagline">הצטרף למהפכת הבינה המלאכותית וגלה עולם של אפשרויות חדשות</p>
+      <a href="https://wa.me/972545425189" class="header-cta">צור קשר</a>
+    </div>
+  </header>
+  
+  <main id="main" class="container">
+    <section class="model-section fade-in">
+  <h2>מודלי שפה</h2>
+  <ul>
+    <li class="language-model">Claude - מודל שפה מתקדם מבית Anthropic</li>
+    <li class="language-model">ChatGPT - מודל השיחה המהפכני של OpenAI</li>
+  </ul>
+  <style>
+    .model-section ul {
+      list-style-type: none;
+      padding-right: 0;
+    }
+    .model-section li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .model-section li:hover {
+      transform: translateX(-10px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .model-section li::before {
+      content: '';
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+    }
+    .model-section li:hover::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+    .language-model:nth-child(1)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M21 4H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-1 14H4c-.55 0-1-.45-1-1V7c0-.55.45-1 1-1h16c.55 0 1 .45 1 1v10c0 .55-.45 1-1 1zM6.5 12h3v-1h-2c-.55 0-1-.45-1-1V9c0-.55.45-1 1-1h2V7h-3v1h2c.55 0 1 .45 1 1v1c0 .55-.45 1-1 1h-2v1zm7 0h1v-4h-1v4zm2 0h1v-1.5h1.5v-1H17V8h-1.5v4zm-6 0h1v-3h.5V8H10v1h.5v3z"/></svg>');
+    }
+    .language-model:nth-child(2)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2327ae60"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>');
+    }
+  </style>
+</section>
+    
+    <section class="model-section fade-in">
+  <h2>מודלי תמונה</h2>
+  <ul>
+    <li class="image-model">Ideogram - יצירת תמונות מטקסט עם דגש על כיתוב וטיפוגרפיה</li>
+    <li class="image-model">Flux - מודל ליצירת תמונות דינמיות ואנימציות</li>
+    <li class="image-model">Midjourney - יצירת אמנות דיגיטלית מתיאורים טקסטואליים</li>
+  </ul>
+  <style>
+    .model-section ul {
+      list-style-type: none;
+      padding-right: 0;
+    }
+    .model-section li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .model-section li:hover {
+      transform: translateX(-10px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .model-section li::before {
+      content: '';
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+    }
+    .model-section li:hover::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+    .image-model:nth-child(1)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF6B6B"><path d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"/><path d="M9 9c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"/></svg>');
+    }
+    .image-model:nth-child(2)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234ECDC4"><path d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM4 18V6h16v12H4z"/><path d="M9.5 9.5l-1.5 3 3 1.5L14.5 9l3 3-3 3-1.5-3-3 1.5"/></svg>');
+    }
+    .image-model:nth-child(3)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF8C42"><path d="M21 3H3C2 3 1 4 1 5v14c0 1.1.9 2 2 2h18c1 0 2-1 2-2V5c0-1-1-2-2-2zM5 17l3.5-4.5 2.5 3.01L14.5 11l4.5 6H5z"/><path d="M12 9c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/><path d="M7 16l2.5-3.5L12 15l3.5-4.5L19 15"/></svg>');
+    }
+  </style>
+</section>
+    
+    <section class="model-section fade-in">
+  <h2>מודלי קול</h2>
+  <ul>
+    <li class="voice-model">Weights - מודל לסינתזה של קול אנושי</li>
+    <li class="voice-model">ElevenLabs - טכנולוגיה מתקדמת לסינתזה של קול טבעי</li>
+    <li class="voice-model">AudioCraft - מודל מבוססי AI ליצירת אודיו ומוזיקה</li>
+  </ul>
+  <style>
+    .model-section ul {
+      list-style-type: none;
+      padding-right: 0;
+    }
+    .model-section li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      transition: transform 0.3s ease;
+    }
+    .model-section li:hover {
+      transform: translateX(-10px);
+    }
+    .model-section li::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin-left: 15px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+    }
+    .model-section li:hover::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+    .voice-model:nth-child(1)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23e74c3c"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>');
+    }
+    .voice-model:nth-child(2)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6zm-2 16c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>');
+    }
+    .voice-model:nth-child(3)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239b59b6"><path d="M12 3v9.28c-.47-.17-.97-.28-1.5-.28C8.01 12 6 14.01 6 16.5S8.01 21 10.5 21c2.31 0 4.2-1.75 4.45-4H15V6h4V3h-7z"/></svg>');
+    }
+  </style>
+</section>
+    
+    <section class="model-section fade-in">
+      <h2>יצירת אתרים</h2>
+      <ul>
+        <li class="website-model">WebSim - פלטפורמה ליצירת אתרים אינטראקטיביים באמצעות בינה מלאכותית</li>
+      </ul>
+    </section>
+    
+    <section class="model-section fade-in">
+  <h2>מודלי וידאו</h2>
+  <ul>
+    <li class="video-model">Gen3 - יצירת וידאו מתקדמת באמצעות בינה מלאכותית</li>
+    <li class="video-model">Luma - כלים חדשניים לעריכה ויצירת וידאו בעזרת AI</li>
+  </ul>
+  <style>
+    .model-section ul {
+      list-style-type: none;
+      padding-right: 0;
+    }
+    .model-section li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .model-section li:hover {
+      transform: translateX(-10px) scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .model-section li::before {
+      content: '';
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: all 0.3s ease;
+    }
+    .model-section li:hover::before {
+      transform: scale(1.2) rotate(10deg);
+    }
+    .video-model:nth-child(1)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FF6B6B"><path d="M21 3H3c-1.11 0-2 .89-2 2v12c0 1.1.89 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.11-.9-2-2-2zm0 14H3V5h18v12zm-5-6l-7 4V7z"/></svg>');
+    }
+    .video-model:nth-child(2)::before {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%234ECDC4"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/><path d="M11.25 15.25L10 18l-1.25-2.75L6 14l2.75-1.25L10 10l1.25 2.75L14 14l-2.75 1.25zm5.69-3.31L16 14l-.94-2.06L13 11l2.06-.94L16 8l.94 2.06L19 11l-2.06.94z"/></svg>');
+    }
+  </style>
+</section>
+    
+    <section class="model-section fade-in">
+      <h2>יצירת אפליקציות ללא קוד</h2>
+      <ul>
+        <li class="app-model">פיתוח אפליקציות בעזרת כלי No-Code מבוססי AI</li>
+      </ul>
+    </section>
+
+    <section class="service-section fade-in" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto; border-radius: 10px; padding: 2rem;">
+  <h2>סוגי שירותים</h2>
+  <ul>
+    <li class="private-lesson">שיעורים פרטיים - למידה אישית מותאמת לצרכים שלך</li>
+    <li class="lecture">הרצאות - העשרה מקצועית בנושאי AI לקבוצות וארגונים</li>
+    <li class="workshop">סדנאות - התנסות מעשית וחווייתית בטכנולוגיות AI מתקדמות</li>
+  </ul>
+</section>
+
+    <section class="video-section fade-in">
+      <h2>תלמדו לעשות גם את זה</h2>
+      <div class="video-container">
+        <div class="video-wrapper">
+          <div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGOgrgNmOk/EQdHP_6gxJiuPpl-4Lws7A/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+          </div>
+        </div>
+        <div class="video-wrapper">
+          <div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGOPTLJzuk/OD8RSfaOMHoCmVSNfpLB4A/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+          </div>
+        </div>
+        <div class="video-wrapper">
+          <div style="position: relative; width: 100%; height: 0; padding-top: 100.0000%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+            <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;" src="https://www.canva.com/design/DAGM-IGZeMM/IgXf0uqq_SU6dPSV5JWFlg/watch?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-section fade-in">
+  <h2>תוכלו ליצור תמונות שלכם</h2>
+  <div class="video-container">
+  <div class="video-wrapper" style="width: 100%; max-width: 300px; margin: 0 auto;">
+    <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);">
+      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAGOKc3DC8Q/pN2dc-Ew5X5ZbqnkOWPVwg/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+  <div class="video-wrapper" style="width: 100%; max-width: 300px; margin: 0 auto;">
+    <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);">
+      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAGOiAmGgyY/1wQ6L2mw9BzDBcTUKgZ76w/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+  <div class="video-wrapper" style="width: 100%; max-width: 300px; margin: 0 auto;">
+    <div style="position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; border-radius: 8px; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16);">
+      <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0;" src="https://www.canva.com/design/DAGOiOnYRu0/lwXorrlyTVKd5CnfrP4baA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+      </iframe>
+    </div>
+  </div>
+</div>
+</section>
+  </main>
+  
+  <a href="https://wa.me/972545425189" class="cta">לפרטים נוספים לחץ כאן</a>
+  
+  <footer>
+  <p>© 2024 אריאל אוחיון- בינה מלאכותית. כל הזכויות שמורות.</p>
+</footer>
+
+  <!-- Modal -->
+  <div id="videoModal" class="modal">
+    <div class="modal-content">
+      <span class="close">×</span>
+      <div class="modal-video">
+        <iframe id="modalIframe" src="" frameborder="0" allowfullscreen=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      sections.forEach(section => {
+        observer.observe(section);
+      });
+
+      // Smooth scroll for header CTA
+      document.querySelector('.header-cta').addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = e.target.getAttribute('href');
+        document.querySelector(targetId).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+
+      // Particles.js configuration
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#ffffff" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: false },
+          size: { value: 3, random: true },
+          line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+          move: { enable: true, speed: 6, direction: "none", random: false,
+            straight: false, out_mode: "out", bounce: false,
+            attract: { enable: false, rotateX: 600, rotateY: 1200 }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          },
+          modes: {
+            grab: { distance: 400, line_linked: { opacity: 1 } },
+            bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+            repulse: { distance: 200, duration: 0.4 },
+            push: { particles_nb: 4 },
+            remove: { particles_nb: 2 }
+          }
+        },
+        retina_detect: true
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById("videoModal");
+    const modalIframe = document.getElementById("modalIframe");
+    const closeBtn = document.getElementsByClassName("close")[0];
+    const videoWrappers = document.querySelectorAll('.video-wrapper');
+
+    videoWrappers.forEach(wrapper => {
+      wrapper.addEventListener('click', function() {
+        const iframe = this.querySelector('iframe');
+        const src = iframe.src;
+        modalIframe.src = src;
+        modal.style.display = "block";
+      });
+    });
+
+    closeBtn.onclick = function() {
+      modal.style.display = "none";
+      modalIframe.src = "";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        modalIframe.src = "";
+      }
+    }
+  </script>
+
+</body></html>
